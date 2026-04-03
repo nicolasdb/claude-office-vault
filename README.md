@@ -76,14 +76,6 @@ projects/
 
 Your first priority after setup is reading the **security guidelines** — we take this seriously.
 
-### Updating Obsidian Config
-
-When the team adds a new plugin or changes shared settings, pull the latest changes and run:
-- **macOS/Linux:** `./setup.sh --update`
-- **Windows:** `.\setup.ps1 -Update`
-
-This refreshes team-shared configs (plugins, types, app settings) without touching your personal workspace state.
-
 ## Daily Workflow
 
 1. Open Claude Code
@@ -163,17 +155,8 @@ These plugins are included in the shared Obsidian config (`.obsidian_/`) and ins
 
 ## Customizing for Your Organization
 
-This vault is a generic skeleton. To adopt it for your org:
+This vault is a generic skeleton. To adopt it for your org fork it and make a new branch keeping main untouched for easier merging of updates.
+Then copy and rename the .obsidian_ folder to .obsidian
+This works with the ingram-technologies@claude-office plugin, and we recommend using arscontexta@agenticnotetaking, either have one person from your team set it up for others or have everyone set their own config up.
 
-1. **Rename** — find-and-replace across the vault:
-   ```bash
-   # Replace plugin/brand name
-   sed -i 's/claude-office/yourorg-office/g' CLAUDE.md README.md team/_new_user/*.md .claude/settings.json
-   # Replace GitHub org placeholder
-   sed -i 's/your-org/yourorg/g' CLAUDE.md README.md
-   ```
-2. **Set git remote** — `git remote set-url origin <your-repo-url>`
-3. **Plugin** — fork/rename the [claude-office plugin](https://github.com/your-org/claude-office-plugin) for your org, or use it as-is
-4. **Fresh history** — if publishing, push to a new repo to avoid leaking prior org data from git history
-5. **Add your projects** — copy `projects/_new_project/` and rename for each project
-6. **Obsidian plugins** — the `.obsidian_/` folder ships with plugin binaries for offline use. Alternatively, delete the `plugins/` folder and let team members install via Obsidian's community plugin browser
+We recommend first taking the time to get familiar with how this works, the plugins and then configure the more advanced parts of the system with /arscontexta:setup.
