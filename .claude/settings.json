@@ -1,5 +1,6 @@
 {
   "enabledPlugins": {
-    "ingram-technologies@claude-office": true
+    "ingram-technologies@claude-office": true,
+    "arscontexta@agenticnotetaking": true
   }
 }
