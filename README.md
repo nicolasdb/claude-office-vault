@@ -63,36 +63,25 @@ projects/
 
 ## Onboarding
 
-1. Clone the vault repo and run the setup script to install Obsidian config:
-   - **macOS/Linux:** `./setup.sh`
-   - **Windows:** `.\setup.ps1`
-   - Then open the vault in Obsidian
+1. Fork the vault repo and run the sync script to install Obsidian config:
+   - **macOS/Linux:** `./sync-obsidian.sh`
+   - **Windows:** `.\sync-obsidian.ps1`
+   - Then open the vault in Obsidian (you don't need an account)
 2. Install the **claude-office plugin** in Claude Code:
-   - Clone `https://github.com/your-org/claude-office-plugin` (requires GitHub access)
-   - In Claude Code, run: `/plugin marketplace add ./path/to/claude-office-plugin`
-   - Then run `/plugin` → go to **Discover** → install **claude-office** -> /reload-plugins
+   - In Claude Code, run: `/plugin marketplace add ingram-technologies/claude-office`
+   - Then run `/plugin install ingram-technologies@claude-office`
 3. Run `/setup-identity` — creates your folder, fills out your profile, configures identity
 4. Commit and push your new folder, then familiarize yourself with the plugin
 
-Your first priority after setup is reading the **security guidelines** — we take this seriously.
+We added suggestive security guidelines for teams coding with AI and recommend reading them.
 
 ## Daily Workflow
 
 1. Open Claude Code
-2. The session-start hook auto-pulls the vault and shows your todo count + recent changes
-3. Run `/check-in` to get your full briefing (what you were working on, project priorities, coordination notes)
-4. Work normally — edit docs, update project status, manage your todo list
-5. On session end, the hook auto-commits and pushes your changes
-6. Daily aggregation runs on schedule and writes notes for your next check-in
-
-### Plugin Commands
-
-| Command | What it does |
-|---------|-------------|
-| `/setup-identity` | One-time setup — tells the plugin who you are and where the vault is |
-| `/check-in` | Resume your session — recap last work, project priorities, your todos |
-| `/aggregate` | Rebuild project status views with per-person notes (runs daily on schedule) |
-| `/retro` | Generate weekly retrospective from git history |
+2. Run `/check-in` to get your full briefing (what you were working on, project priorities, coordination notes)
+3. Work normally — edit docs, update project status, manage your todo list
+4. On session end, the hook auto-commits and pushes your changes
+5. You can setup daily aggregation to run on schedule and write notes for your next check-in, but we recommend having daily team meets where you do this
 
 ## Collaboration Tips
 
@@ -110,9 +99,21 @@ Your first priority after setup is reading the **security guidelines** — we ta
 - Session-end hook only commits `team/<you>/`, never other folders
 - See `CLAUDE.md` for full security rules and the [plugin README](https://github.com/your-org/claude-office-plugin) for design decisions
 
+## Claude Code Plugins
+
+Three plugins are enabled for this repo in `.claude/settings.json`, but you'll need to install them manually:
+
+| Plugin | What it does | Repo |
+|--------|-------------| ---- |
+| **ingram-technologies@claude-office** | Core automation — hooks to add your activity dynamically, `/check-in`, `/aggregate`, `/retro`, `/setup-identity` | https://github.com/ingram-technologies/claude-office |
+| **arscontexta@agenticnotetaking** | Knowledge management layer — guides note creation, maintains MOCs, surfaces methodology advice as you work | https://github.com/agenticnotetaking/arscontexta |
+| **obsidian@obsidian-skills** | Skills for reading and writing Obsidian vault content from Claude Code | https://github.com/kepano/obsidian-skills |
+
+`ingram-technologies@claude-office` is how this vault is supposed to work. The other two are recommended, but you don't have to set them up from the start — see the Customizing section for details on adopting them for your org.
+
 ## Obsidian Plugins
 
-These plugins are included in the shared Obsidian config (`.obsidian_/`) and installed by the setup script:
+These plugins are included in the shared Obsidian config (`.obsidian_template/`) and installed by the sync script:
 
 | Plugin | What it does |
 |--------|-------------|
@@ -120,10 +121,36 @@ These plugins are included in the shared Obsidian config (`.obsidian_/`) and ins
 | **obsidian-kanban** | Drag-and-drop board views |
 | **obsidian-git** | Auto-pull/push every 10 min (safety net) |
 | **obsidian-excalidraw-plugin** | Embedded whiteboards and diagrams |
-| **buttons** | One-click actions in notes |
 | **obsidian-meta-bind-plugin** | Inline editable metadata |
 | **table-editor-obsidian** | Better table editing |
 | **obsidian-advanced-uri** | Deep links to notes from outside Obsidian |
+| **obsidian-importer** | Import notes from other apps |
+| **recent-files-obsidian** | Quick access to recently opened files |
+| **notebook-navigator** | File tree with folder notes and pinning |
+| **obsidian-style-settings** | Exposes CSS variables for themes and plugins so you can tweak appearance without editing CSS |
+
+## Syncing Obsidian Config
+
+Run the sync script again whenever you pull changes that update `.obsidian_template/` (e.g. a new plugin was added by the team):
+
+```bash
+# macOS/Linux
+./sync-obsidian.sh
+
+# Windows
+.\sync-obsidian.ps1
+```
+
+**What the script does:**
+
+| Scenario | Behaviour |
+|----------|-----------|
+| `.obsidian/` doesn't exist | Full copy of `.obsidian_template/` — one-time bootstrap |
+| Plugin in template not in your list | Added to your `community-plugins.json` |
+| Plugin code files (`main.js`, `manifest.json`, `styles.css`) | Always updated from template |
+| Your plugin settings (`data.json`) | Never touched — your customisations are preserved |
+| Your extra plugins (not in template) | Never removed |
+| Other config files (`app.json`, `workspace.json`, etc.) | Never touched after initial setup |
 
 ## Example: Starting Your Day
 
@@ -156,7 +183,7 @@ These plugins are included in the shared Obsidian config (`.obsidian_/`) and ins
 ## Customizing for Your Organization
 
 This vault is a generic skeleton. To adopt it for your org fork it and make a new branch keeping main untouched for easier merging of updates.
-Then copy and rename the .obsidian_ folder to .obsidian
+Then run `./sync-obsidian.sh` (or `.\sync-obsidian.ps1` on Windows) to create `.obsidian/` from `.obsidian_template/`.
 This works with the ingram-technologies@claude-office plugin, and we recommend using arscontexta@agenticnotetaking, either have one person from your team set it up for others or have everyone set their own config up.
 
 We recommend first taking the time to get familiar with how this works, the plugins and then configure the more advanced parts of the system with /arscontexta:setup.
