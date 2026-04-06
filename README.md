@@ -103,11 +103,11 @@ We added suggestive security guidelines for teams coding with AI and recommend r
 
 Three plugins are enabled for this repo in `.claude/settings.json`, but you'll need to install them manually:
 
-| Plugin | What it does | Repo |
-|--------|-------------| ---- |
-| **ingram-technologies@claude-office** | Core automation — hooks to add your activity dynamically, `/check-in`, `/aggregate`, `/retro`, `/setup-identity` | https://github.com/ingram-technologies/claude-office |
-| **arscontexta@agenticnotetaking** | Knowledge management layer — guides note creation, maintains MOCs, surfaces methodology advice as you work | https://github.com/agenticnotetaking/arscontexta |
-| **obsidian@obsidian-skills** | Skills for reading and writing Obsidian vault content from Claude Code | https://github.com/kepano/obsidian-skills |
+| Plugin | What it does |
+|-------|-------------|
+| [**ingram-technologies@claude-office**](https://github.com/ingram-technologies/claude-office) | Core automation — hooks to add your activity dynamically, `/check-in`, `/aggregate`, `/retro`, `/setup-identity` |
+| [**arscontexta@agenticnotetaking**](https://github.com/agenticnotetaking/arscontexta) | Knowledge management layer — guides note creation, maintains MOCs, surfaces methodology advice as you work |
+| [**obsidian@obsidian-skills**](https://github.com/kepano/obsidian-skills) | Skills for reading and writing Obsidian vault content from Claude Code |
 
 `ingram-technologies@claude-office` is how this vault is supposed to work. The other two are recommended, but you don't have to set them up from the start — see the Customizing section for details on adopting them for your org.
 
