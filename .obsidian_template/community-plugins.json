@@ -9,5 +9,7 @@
   "table-editor-obsidian",
   "recent-files-obsidian",
   "notebook-navigator",
-  "obsidian-html-plugin"
+  "obsidian-html-plugin",
+  "html-viewer",
+  "copilot"
 ]

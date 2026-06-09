@@ -1,12 +1,16 @@
 {
   "enabledPlugins": {
-    "ingram-technologies@claude-office": true,
+    "claude-office@ingram-technologies": true,
     "arscontexta@agenticnotetaking": true,
     "obsidian@obsidian-skills": true
   },
+
   "extraKnownMarketplaces": {
     "claude-office": {
-      "source": { "source": "github", "repo": "ingram-technologies/claude-office" }
+      "source": {
+        "source": "github",
+        "repo": "ingram-technologies/claude-office"
+      }
     },
     "agenticnotetaking": {
       "source": { "source": "github", "repo": "agenticnotetaking/arscontexta" }

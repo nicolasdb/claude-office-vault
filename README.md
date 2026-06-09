@@ -127,6 +127,8 @@ These plugins are included in the shared Obsidian config (`.obsidian_template/`)
 | **obsidian-importer** | Import notes from other apps |
 | **recent-files-obsidian** | Quick access to recently opened files |
 | **notebook-navigator** | File tree with folder notes and pinning |
+| **html-viewer** | Open `.html` and `.htm` files in a sandboxed Obsidian view |
+| **copilot** | In-vault AI chat, note search, and writing assistance |
 | **obsidian-style-settings** | Exposes CSS variables for themes and plugins so you can tweak appearance without editing CSS |
 
 ## Syncing Obsidian Config
